@@ -1,4 +1,4 @@
-package hexlet.code;
+package hexlet.code.notused;
 
 import java.util.Scanner;
 // узнаем имя пользователя
