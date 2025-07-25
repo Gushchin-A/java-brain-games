@@ -1,13 +1,34 @@
 package hexlet.code;
 
+import hexlet.code.engine.Engine;
+import hexlet.code.games.CalcGame;
 import hexlet.code.games.EvenGame;
-import hexlet.code.games.Greet;
+import hexlet.code.interaction.Greet;
 import java.util.Scanner;
 
-// Класс хранит реализацию и логику игрового меню
-// Мы приветсуем пользователя
-// Просим выбрать игру
-// Каждый игра — отдельный класс
+/*
+App — игровое меню
+- Просим пользователя выбрать игру
+- Запускаем приветствие
+- После запускаем игру
+
+Пакет games содержит:
+- Интерфейс Game. Внутри методы всех игр
+- Список всех игр
+- Одна игра = отдельный class с методами (вопросы, проверка ответов, описание)
+- Каждая игра имплементирует интерфейс Game
+
+Пакет engine:
+Cодержит class Engine для старта каждой игры.
+В метод start передаем объект Game в зависимости от выбора пользователя
+
+Пакет interaction:
+Храним взаимодействие с пользователем. На данный момент содержит class Greet с методом приветствия.
+Приветствие вызываем в Engine. Имя храним в Greet.
+
+Проверка на четность, генераторы чисел и подобное. Скорее всего перенесу в утилиты.
+*/
+
 
 public class App {
     public static void main(String[] args) {
@@ -16,8 +37,8 @@ public class App {
         var gameSelection = "Please enter the game number and press Enter.";
         var choice = "Your choice: ";
 
-        int[] games = {1, 2, 0};
-        String[] menuText = {" - Greet", " - Even", " - Exit"};
+        int[] games = {1, 2, 3, 0};
+        String[] menuText = {" - Greet", " - Even", " - Calc", " - Exit"};
 
         // выводим меню. можно попробовать сделать циклом
         System.out.print(gameSelection
@@ -27,11 +48,15 @@ public class App {
                 + games[1] + menuText[1]
                 + "\n"
                 + games[2] + menuText[2]
+                + "\n"
+                + games[3] + menuText[3]
                 + "\n");
 
         // проверяем что ввел пользователь
-        if (scanner.hasNextInt()) {
-            var userChoice = scanner.nextInt();
+
+        var userChoiceText = scanner.nextLine();
+        try {
+            var userChoice = Integer.parseInt(userChoiceText);
             switch (userChoice) {
                 case 1:
                     System.out.println(choice + userChoice + "\n");
@@ -39,17 +64,24 @@ public class App {
                     break;
                 case 2:
                     System.out.println(choice + userChoice + "\n");
-                    EvenGame.startEvenGame();
+                    var evenGame = new EvenGame();
+                    Engine.start(evenGame);
+                    break;
+                case 3:
+                    System.out.println(choice + userChoice + "\n");
+                    var calcGame = new CalcGame();
+                    Engine.start(calcGame);
                     break;
                 default:
                     System.out.println("The game with this number does not exist.");
             }
-        } else {
-            System.out.println("It seems you entered some text and everything broke...");
+        } catch (NumberFormatException e) {
+            System.out.println("It seems you entered text :("
+                    + "\nEverything is broken!"
+                    + "\nRestart the game, please");
         }
     }
 }
-
 
 /*
 самый первый подход с созданием переменных под каждый пункт меню

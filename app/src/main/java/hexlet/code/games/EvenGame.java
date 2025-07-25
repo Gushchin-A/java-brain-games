@@ -1,15 +1,73 @@
 package hexlet.code.games;
 
+import hexlet.code.games.interfaces.Game;
 import hexlet.code.utilities.Predicates;
-
-import java.util.Scanner;
 
 // реализация пункта меню — Even. Игра проверка четности
 
-public class EvenGame {
+public class EvenGame implements Game {
+    private int currentNumber;
 
-    // в одном методе: приветствие, правила, старт
-    public static void startEvenGame() {
+    @Override
+    public String gameDescription() {
+        return "Answer 'yes' if the number is even, otherwise answer 'no'.";
+    }
+
+    @Override
+    public String getQuestion() {
+        currentNumber = randomNumber();
+        return currentNumber + "";
+    }
+
+    @Override
+    public boolean checkAnswer(String userAnswer) {
+        boolean isEven = Predicates.isEven(currentNumber);
+
+        if (!userAnswer.equals("yes") && !userAnswer.equals("no")) {
+            throw new IllegalArgumentException("The answer is incorrect");
+        }
+
+        if (isEven && userAnswer.equals("yes")) {
+            return true;
+        }
+
+        if (!isEven && userAnswer.equals("no")) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public String getCorrectAnswer() {
+        if (Predicates.isEven(currentNumber)) {
+            return "yes";
+        }
+        return "no";
+    }
+
+    // генератор случайных чисел через Math.random
+    public static int randomNumber() {
+        var randomNumber = Math.random() * 42;
+        return (int) randomNumber;
+    }
+}
+
+/*
+реализация псевдоуникального генератора чисел. от него отказался
+        int a = 150;
+        int c = 130;
+        int m = 190;
+        long seed = System.currentTimeMillis();
+        int longSeedToInt = (int) seed;
+
+        var number = (a * longSeedToInt + c) % m;
+        return number;
+
+
+старая реализация логики одной игры в одном классе (пусть будет тут)
+
+    //в одном методе: приветствие, правила, старт
+    //public static void EvenGame implements Game() {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Welcome to the Brain Games!");
@@ -67,24 +125,4 @@ public class EvenGame {
             }
         }
     }
-
-    // генератор случайных чисел через Math.random
-    public static int randomNumber() {
-
-        var randomNumber = Math.random() * 42;
-        return (int) randomNumber;
-    }
-}
-
-/*
-реализация псевдоуникального генератора чисел. от него отказался
-        int a = 150;
-        int c = 130;
-        int m = 190;
-        long seed = System.currentTimeMillis();
-        int longSeedToInt = (int) seed;
-
-        var number = (a * longSeedToInt + c) % m;
-        return number;
  */
-

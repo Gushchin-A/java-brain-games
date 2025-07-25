@@ -5,5 +5,8 @@
 ---
 
 ### 🎮 Demo part 1
-Minimal console game to check if the number is even or not.
+Mini game even or odd.
 [![asciicast](https://asciinema.org/a/12Z7Y5M39Bzhnhock8Ttbq7Jp.svg)](https://asciinema.org/a/12Z7Y5M39Bzhnhock8Ttbq7Jp?t=68)
+### 🎮 Demo part 2
+Mini-game calculator (addition, subtraction, multiplication).
+[![asciicast](https://asciinema.org/a/PRAXWAyIGWvP21bV020tiYRIJ.svg)](https://asciinema.org/a/PRAXWAyIGWvP21bV020tiYRIJ)
