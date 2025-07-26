@@ -2,9 +2,19 @@ package hexlet.code.games;
 
 import hexlet.code.games.interfaces.Game;
 
+/*
+CalcGame — игра калькулятор.
+- класс имплементирует Game
+- в данный момент в классе находится метод с рандомными выражениями
+- возможно метод с генерацией рандомных выражений переедет в утилиты
+
+В методе с генерацией рандомных выражений сразу же вычисляется ответ.
+Ответ и выражение записываются в поле класса.
+*/
+
 public class CalcGame implements Game {
     private String currentExpression;
-    private int currentAnswerExpression;
+    private int currentAnswer;
 
     @Override
     public String gameDescription() {
@@ -21,7 +31,7 @@ public class CalcGame implements Game {
     public boolean checkAnswer(String userAnswer) {
         try {
             var answer = Integer.parseInt(userAnswer);
-            boolean isCorrect = answer == currentAnswerExpression;
+            boolean isCorrect = answer == currentAnswer;
             if (isCorrect) {
                 return true;
             }
@@ -36,14 +46,14 @@ public class CalcGame implements Game {
 
     @Override
     public String getCorrectAnswer() {
-        return currentAnswerExpression + "";
+        return currentAnswer + "";
     }
 
     public void generateRandomExpression() {
-        var numberOneDouble = Math.random() * (20 - 1 + 1) + 1;
+        var numberOneDouble = Math.random() * (30 - 1 + 1) + 1;
         var numberOne = (int) numberOneDouble;
 
-        var numberTwoDouble = Math.random() * (10 - 1 + 1) + 1;
+        var numberTwoDouble = Math.random() * (20 - 1 + 1) + 1;
         var numberTwo = (int) numberTwoDouble;
 
         var randomExpressionDouble = Math.random() * 3;
@@ -52,15 +62,15 @@ public class CalcGame implements Game {
         switch (randomExpressionInt) {
             case 0:
                 currentExpression = numberOne + " + " + numberTwo;
-                currentAnswerExpression = numberOne + numberTwo;
+                currentAnswer = numberOne + numberTwo;
                 break;
             case 1:
                 currentExpression = numberOne + " - " + numberTwo;
-                currentAnswerExpression = numberOne - numberTwo;
+                currentAnswer = numberOne - numberTwo;
                 break;
             case 2:
                 currentExpression = numberOne + " * " + numberTwo;
-                currentAnswerExpression = numberOne * numberTwo;
+                currentAnswer = numberOne * numberTwo;
                 break;
             default:
                 break;

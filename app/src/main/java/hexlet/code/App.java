@@ -3,6 +3,7 @@ package hexlet.code;
 import hexlet.code.engine.Engine;
 import hexlet.code.games.CalcGame;
 import hexlet.code.games.EvenGame;
+import hexlet.code.games.GcdGame;
 import hexlet.code.interaction.Greet;
 import java.util.Scanner;
 
@@ -20,7 +21,7 @@ App — игровое меню
 
 Пакет engine:
 Cодержит class Engine для старта каждой игры.
-В метод start передаем объект Game в зависимости от выбора пользователя
+В метод start класса Engine передаем объект Game в зависимости от выбора пользователя
 
 Пакет interaction:
 Храним взаимодействие с пользователем. На данный момент содержит class Greet с методом приветствия.
@@ -37,8 +38,8 @@ public class App {
         var gameSelection = "Please enter the game number and press Enter.";
         var choice = "Your choice: ";
 
-        int[] games = {1, 2, 3, 0};
-        String[] menuText = {" - Greet", " - Even", " - Calc", " - Exit"};
+        int[] games = {1, 2, 3, 4, 0};
+        String[] menuText = {" - Greet", " - Even", " - Calc", " - GCD", " - Exit"};
 
         // выводим меню. можно попробовать сделать циклом
         System.out.print(gameSelection
@@ -50,6 +51,8 @@ public class App {
                 + games[2] + menuText[2]
                 + "\n"
                 + games[3] + menuText[3]
+                + "\n"
+                + games[4] + menuText[4]
                 + "\n");
 
         // проверяем что ввел пользователь
@@ -72,13 +75,18 @@ public class App {
                     var calcGame = new CalcGame();
                     Engine.start(calcGame);
                     break;
+                case 4:
+                    System.out.println(choice + userChoice + "\n");
+                    var gcdGame = new GcdGame();
+                    Engine.start(gcdGame);
+                    break;
                 default:
                     System.out.println("The game with this number does not exist.");
             }
         } catch (NumberFormatException e) {
-            System.out.println("It seems you entered text :("
-                    + "\nEverything is broken!"
-                    + "\nRestart the game, please");
+            System.out.println("\n" + "It seems you entered text :("
+                    + "\n" + "Everything is broken!"
+                    + "\n" + "Restart the game, please");
         }
     }
 }

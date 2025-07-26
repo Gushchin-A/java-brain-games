@@ -3,7 +3,12 @@ package hexlet.code.games;
 import hexlet.code.games.interfaces.Game;
 import hexlet.code.utilities.Predicates;
 
-// реализация пункта меню — Even. Игра проверка четности
+/*
+EvenGame — игра проверка четности числа.
+- класс имплементирует Game
+- в данный момент в классе находится метод с рандомным числом
+- возможно метод с генерацией рандомного числа перенесу в утилиты
+*/
 
 public class EvenGame implements Game {
     private int currentNumber;
@@ -47,8 +52,8 @@ public class EvenGame implements Game {
 
     // генератор случайных чисел через Math.random
     public static int randomNumber() {
-        var randomNumber = Math.random() * 42;
-        return (int) randomNumber;
+        var number = Math.random() * 42;
+        return (int) number;
     }
 }
 

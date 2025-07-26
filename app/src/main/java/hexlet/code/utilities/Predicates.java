@@ -1,13 +1,29 @@
 package hexlet.code.utilities;
 
-// класс для реализации методов с проверками
+/*
+Predicates — содержит методы проверки
+- проверка четности числа
+- поиск НОД (наибольший общий делитель)
+*/
 
 public class Predicates {
 
-    // метод, где проверим четное или нет
-    // вызывается на 'yes' от пользовтеля
+    // проверка четности
     public static boolean isEven(int number) {
         return number % 2 == 0;
+    }
+
+    // поиск НОД
+    public static int greatestCommonDivisor(int numberOne, int numberTwo) {
+        var a = numberOne;
+        var b = numberTwo;
+
+        while (b != 0) {
+            var temp = a;
+            a = b;
+            b = temp % b;
+        }
+        return a;
     }
 }
 

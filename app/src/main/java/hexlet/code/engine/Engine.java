@@ -4,6 +4,19 @@ import hexlet.code.games.interfaces.Game;
 import hexlet.code.interaction.Greet;
 import java.util.Scanner;
 
+/*
+Engine — запуск и управление играми
+- метод start передаем конкретную игру класса Game
+- каждая игра имлементирует интерфейс Game
+
+Далее вызываем общее приветствие.
+Игра проходит в цикле for. В нем же мы делаем все необходимые проверки:
+- для показа вопроса вызываем методы запущенной игры
+- для проверки также вызываем метод запущенной игры
+- ответ пользователя берем в этом классе в методе start
+- ответ пользователя в виде аргумента передает в метод запущенной игры
+*/
+
 public class Engine {
     public static void start(Game game) {
         Scanner scanner = new Scanner(System.in);
