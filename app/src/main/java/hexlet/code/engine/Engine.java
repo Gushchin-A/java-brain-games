@@ -25,12 +25,12 @@ public class Engine {
         var answerMenu = "Your answer: ";
 
         Greet.greeting();
-        System.out.println(game.gameDescription());
+        System.out.println("\n" + game.gameDescription() + "\n");
 
         for (var i = 0; i <= 3; i++) {
 
             if (i == 3) {
-                System.out.println("Congratulations, " + Greet.getUserName() + "!");
+                System.out.println("\n" + "Congratulations, " + Greet.getUserName() + "!" + "\n");
                 break;
             }
 
@@ -40,12 +40,12 @@ public class Engine {
             var userAnswer = scanner.nextLine();
 
             if (game.checkAnswer(userAnswer)) {
-                System.out.println("Correct!");
+                System.out.println("\n" + "Correct!" + "\n");
             } else {
-                System.out.println("'" + userAnswer + "'"
+                System.out.println("\n" + "'" + userAnswer + "'"
                         + " is wrong answer ;(. Correct answer was "
                         + "'" + game.getCorrectAnswer() + "'");
-                System.out.println("Let's try again, " + Greet.getUserName() + "!");
+                System.out.println("Let's try again, " + Greet.getUserName() + "!" + "\n");
                 break;
             }
         }

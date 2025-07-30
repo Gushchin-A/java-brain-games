@@ -13,3 +13,6 @@ Mini-game: calculator (addition, subtraction, multiplication).
 ### 🎮 Demo part 3
 Mini-game: finding the greatest common divisor of two random numbers.
 [![asciicast](https://asciinema.org/a/Ltp43oE5OQepHiD6xTUdSHTCk.svg)](https://asciinema.org/a/Ltp43oE5OQepHiD6xTUdSHTCk)
+### 🎮 Demo part 4
+Mini-game: find out the missing number in an arithmetic progression.
+[![asciicast](https://asciinema.org/a/k1KDzIdBsSdqg5xYrdPN64w2g.svg)](https://asciinema.org/a/k1KDzIdBsSdqg5xYrdPN64w2g)

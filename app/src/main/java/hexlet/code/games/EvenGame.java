@@ -2,6 +2,7 @@ package hexlet.code.games;
 
 import hexlet.code.games.interfaces.Game;
 import hexlet.code.utilities.Predicates;
+import hexlet.code.utilities.RandomUtilities;
 
 /*
 EvenGame — игра проверка четности числа.
@@ -11,7 +12,8 @@ EvenGame — игра проверка четности числа.
 */
 
 public class EvenGame implements Game {
-    private int currentNumber;
+    private int currentQuestion;
+    private String currentAnswer;
 
     @Override
     public String gameDescription() {
@@ -20,40 +22,32 @@ public class EvenGame implements Game {
 
     @Override
     public String getQuestion() {
-        currentNumber = randomNumber();
-        return currentNumber + "";
+        generateQuestionAnswer();
+        return currentQuestion + "";
     }
 
     @Override
     public boolean checkAnswer(String userAnswer) {
-        boolean isEven = Predicates.isEven(currentNumber);
 
         if (!userAnswer.equals("yes") && !userAnswer.equals("no")) {
             throw new IllegalArgumentException("The answer is incorrect");
         }
-
-        if (isEven && userAnswer.equals("yes")) {
-            return true;
-        }
-
-        if (!isEven && userAnswer.equals("no")) {
-            return true;
-        }
-        return false;
+        return currentAnswer.equals(userAnswer);
     }
 
     @Override
     public String getCorrectAnswer() {
-        if (Predicates.isEven(currentNumber)) {
-            return "yes";
-        }
-        return "no";
+        return currentAnswer;
     }
 
-    // генератор случайных чисел через Math.random
-    public static int randomNumber() {
-        var number = Math.random() * 42;
-        return (int) number;
+    public void generateQuestionAnswer() {
+        currentQuestion = RandomUtilities.randomNumber(1, 42);
+
+        if (Predicates.isEven(currentQuestion)) {
+            currentAnswer = "yes";
+        } else {
+            currentAnswer = "no";
+        }
     }
 }
 

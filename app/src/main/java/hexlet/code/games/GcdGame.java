@@ -2,6 +2,7 @@ package hexlet.code.games;
 
 import hexlet.code.games.interfaces.Game;
 import hexlet.code.utilities.Predicates;
+import hexlet.code.utilities.RandomUtilities;
 
 /*
 GcdGame — игра с поиском наибольшого общего делителя двух чисел.
@@ -26,8 +27,8 @@ public class GcdGame implements Game {
 
     @Override
     public String getQuestion() {
-        currentNumberOne = randomNumbers();
-        currentNumberTwo = randomNumbers();
+        currentNumberOne = RandomUtilities.randomNumber(1, 100);
+        currentNumberTwo = RandomUtilities.randomNumber(1, 100);
         return currentNumberOne + " " + currentNumberTwo;
     }
 
@@ -52,10 +53,5 @@ public class GcdGame implements Game {
     @Override
     public String getCorrectAnswer() {
         return currentAnswer + "";
-    }
-
-    public static int randomNumbers() {
-        var number = Math.random() * (100 - 1 + 1) + 1;
-        return (int) number;
     }
 }

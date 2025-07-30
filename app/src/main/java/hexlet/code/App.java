@@ -4,6 +4,7 @@ import hexlet.code.engine.Engine;
 import hexlet.code.games.CalcGame;
 import hexlet.code.games.EvenGame;
 import hexlet.code.games.GcdGame;
+import hexlet.code.games.ProgressionGame;
 import hexlet.code.interaction.Greet;
 import java.util.Scanner;
 
@@ -35,13 +36,19 @@ public class App {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        var gameSelection = "Please enter the game number and press Enter.";
+        var gameSelection = "\n" + "Please enter the game number and press Enter.";
         var choice = "Your choice: ";
 
-        int[] games = {1, 2, 3, 4, 0};
-        String[] menuText = {" - Greet", " - Even", " - Calc", " - GCD", " - Exit"};
+        int[] games = {1, 2, 3, 4, 5, 0};
+        String[] menuText = {" - Greet", " - Even", " - Calc",
+                             " - GCD", " - Progression", " - Exit"};
 
+        System.out.println(gameSelection);
+        for (var i = 0; i < games.length; i++) {
+            System.out.println(games[i] + menuText[i]);
+        }
         // выводим меню. можно попробовать сделать циклом
+        /*
         System.out.print(gameSelection
                 + "\n"
                 + games[0] + menuText[0]
@@ -54,6 +61,7 @@ public class App {
                 + "\n"
                 + games[4] + menuText[4]
                 + "\n");
+          */
 
         // проверяем что ввел пользователь
 
@@ -80,13 +88,19 @@ public class App {
                     var gcdGame = new GcdGame();
                     Engine.start(gcdGame);
                     break;
+                case 5:
+                    System.out.println(choice + userChoice + "\n");
+                    var progressionGame = new ProgressionGame();
+                    Engine.start(progressionGame);
+                    break;
                 default:
                     System.out.println("The game with this number does not exist.");
             }
         } catch (NumberFormatException e) {
             System.out.println("\n" + "It seems you entered text :("
                     + "\n" + "Everything is broken!"
-                    + "\n" + "Restart the game, please");
+                    + "\n" + "Restart the game, please"
+                    + "\n");
         }
     }
 }

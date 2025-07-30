@@ -1,6 +1,7 @@
 package hexlet.code.games;
 
 import hexlet.code.games.interfaces.Game;
+import hexlet.code.utilities.RandomUtilities;
 
 /*
 CalcGame — игра калькулятор.
@@ -13,7 +14,7 @@ CalcGame — игра калькулятор.
 */
 
 public class CalcGame implements Game {
-    private String currentExpression;
+    private String currentQuestion;
     private int currentAnswer;
 
     @Override
@@ -23,8 +24,8 @@ public class CalcGame implements Game {
 
     @Override
     public String getQuestion() {
-        generateRandomExpression();
-        return currentExpression;
+        generateQuestionAnswer();
+        return currentQuestion;
     }
 
     @Override
@@ -49,27 +50,24 @@ public class CalcGame implements Game {
         return currentAnswer + "";
     }
 
-    public void generateRandomExpression() {
-        var numberOneDouble = Math.random() * (30 - 1 + 1) + 1;
-        var numberOne = (int) numberOneDouble;
-
-        var numberTwoDouble = Math.random() * (20 - 1 + 1) + 1;
-        var numberTwo = (int) numberTwoDouble;
+    public void generateQuestionAnswer() {
+        var numberOne = RandomUtilities.randomNumber(1, 30);
+        var numberTwo = RandomUtilities.randomNumber(1, 20);
 
         var randomExpressionDouble = Math.random() * 3;
         var randomExpressionInt = (int) randomExpressionDouble;
 
         switch (randomExpressionInt) {
             case 0:
-                currentExpression = numberOne + " + " + numberTwo;
+                currentQuestion = numberOne + " + " + numberTwo;
                 currentAnswer = numberOne + numberTwo;
                 break;
             case 1:
-                currentExpression = numberOne + " - " + numberTwo;
+                currentQuestion = numberOne + " - " + numberTwo;
                 currentAnswer = numberOne - numberTwo;
                 break;
             case 2:
-                currentExpression = numberOne + " * " + numberTwo;
+                currentQuestion = numberOne + " * " + numberTwo;
                 currentAnswer = numberOne * numberTwo;
                 break;
             default:
