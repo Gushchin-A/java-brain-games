@@ -8,6 +8,7 @@ import java.util.Scanner;
 Engine — запуск и управление играми
 - метод start передаем конкретную игру класса Game
 - каждая игра имлементирует интерфейс Game
+- константа — максимум правильных ответов
 
 Далее вызываем общее приветствие.
 Игра проходит в цикле for. В нем же мы делаем все необходимые проверки:
@@ -18,6 +19,8 @@ Engine — запуск и управление играми
 */
 
 public class Engine {
+    private static final int MAX_CORRECT_ANSWERS = 3;
+
     public static void start(Game game) {
         Scanner scanner = new Scanner(System.in);
 
@@ -27,9 +30,9 @@ public class Engine {
         Greet.greeting();
         System.out.println("\n" + game.gameDescription() + "\n");
 
-        for (var i = 0; i <= 3; i++) {
+        for (var i = 0; i <= MAX_CORRECT_ANSWERS; i++) {
 
-            if (i == 3) {
+            if (i == MAX_CORRECT_ANSWERS) {
                 System.out.println("Congratulations, " + Greet.getUserName() + "!" + "\n");
                 break;
             }

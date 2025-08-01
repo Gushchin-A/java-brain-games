@@ -6,16 +6,29 @@ import hexlet.code.utilities.RandomUtilities;
 /*
 ProgressionGame — игра с поиском пропущенного числа в последовательности
 - класс имплементирует Game
+- константы — детали работы генерации вопроса и ответа
 
 Метод generateQuestionAnswer():
 - генерация последовательности
 - создание вопроса и ответа
 */
 
-public class ProgressionGame implements Game {
+public final class ProgressionGame implements Game {
+    private static final int PROGRESSION_LENGTH = 10;
+    private static final int MIN_START = 1;
+    private static final int MAX_START = 16;
+    private static final int MIN_HIDDEN_INDEX = 0;
+    private static final int MAX_HIDDEN_INDEX = 9;
+    private static final int MIN_STEP = 1;
+    private static final int MAX_STEP = 3;
+
+    // первая последовательность
+    private static final int MIN_INITIAL_STEP = 2;
+    private static final int MAX_INITIAL_STEP = 4;
+
     private String currentQuestion;
     private int currentAnswer;
-    private int step = RandomUtilities.randomNumber(2, 4);
+    private int step = RandomUtilities.randomNumber(MIN_INITIAL_STEP, MAX_INITIAL_STEP);
 
     @Override
     public String gameDescription() {
@@ -59,14 +72,14 @@ public class ProgressionGame implements Game {
     }
 
     public void generateQuestionAnswer() {
-        var progression = new Integer[10];
-        var start = RandomUtilities.randomNumber(1, 16);
-        var hiddenIndex = RandomUtilities.randomNumber(0, 9);
-        for (var i = 0; i < 10; i++) {
+        var progression = new Integer[PROGRESSION_LENGTH];
+        var start = RandomUtilities.randomNumber(MIN_START, MAX_START);
+        var hiddenIndex = RandomUtilities.randomNumber(MIN_HIDDEN_INDEX, MAX_HIDDEN_INDEX);
+        for (var i = 0; i < PROGRESSION_LENGTH; i++) {
             var currentElement = start + i * step;
             progression[i] = currentElement;
         }
-        var coefficientStep = RandomUtilities.randomNumber(1, 3);
+        var coefficientStep = RandomUtilities.randomNumber(MIN_STEP, MAX_STEP);
         step += coefficientStep;
         currentAnswer = progression[hiddenIndex];
         progression[hiddenIndex] = null;

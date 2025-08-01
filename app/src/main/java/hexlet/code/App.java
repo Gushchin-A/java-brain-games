@@ -39,13 +39,21 @@ Cодержит кдасс Engine для старта каждой игры.
 
 
 public class App {
+    private static final int GREET = 1;
+    private static final int EVEN = 2;
+    private static final int CALC = 3;
+    private static final int GCD = 4;
+    private static final int PROGRESSION = 5;
+    private static final int PRIME = 6;
+    private static final int EXIT = 0;
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
         var gameSelection = "\n" + "Please enter the game number and press Enter.";
         var choice = "Your choice: ";
 
-        int[] games = {1, 2, 3, 4, 5, 6, 0};
+        int[] games = {GREET, EVEN, CALC, GCD, PROGRESSION, PRIME, EXIT};
         String[] menuText = {" - Greet", " - Even", " - Calc",
                              " - GCD", " - Progression", " - Prime",
                              " - Exit"};
@@ -59,36 +67,36 @@ public class App {
         try {
             var userChoice = Integer.parseInt(userChoiceText);
             switch (userChoice) {
-                case 1:
+                case GREET:
                     System.out.println(choice + userChoice + "\n");
                     Greet.greeting();
                     break;
-                case 2:
+                case EVEN:
                     System.out.println(choice + userChoice + "\n");
                     var evenGame = new EvenGame();
                     Engine.start(evenGame);
                     break;
-                case 3:
+                case CALC:
                     System.out.println(choice + userChoice + "\n");
                     var calcGame = new CalcGame();
                     Engine.start(calcGame);
                     break;
-                case 4:
+                case GCD:
                     System.out.println(choice + userChoice + "\n");
                     var gcdGame = new GcdGame();
                     Engine.start(gcdGame);
                     break;
-                case 5:
+                case PROGRESSION:
                     System.out.println(choice + userChoice + "\n");
                     var progressionGame = new ProgressionGame();
                     Engine.start(progressionGame);
                     break;
-                case 6:
+                case PRIME:
                     System.out.println(choice + userChoice + "\n");
                     var primeGame = new PrimeGame();
                     Engine.start(primeGame);
                     break;
-                case 0:
+                case EXIT:
                     System.out.println(choice + userChoice + "\n");
                     Exit.parting();
                     break;

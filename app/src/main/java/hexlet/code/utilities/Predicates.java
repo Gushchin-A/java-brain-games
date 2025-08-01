@@ -5,9 +5,12 @@ Predicates — содержит методы проверки
 - проверка четности числа
 - поиск НОД (наибольший общий делитель)
 - простое число или нет
+
+Константа — минмальный делитель для метода проверки простого числа
 */
 
 public class Predicates {
+    private static final int FIRST_DIVISOR = 3;
 
     // проверка четности
     public static boolean isEven(int number) {
@@ -41,7 +44,7 @@ public class Predicates {
         double squareNumber = Math.sqrt(number);
         var limit = (int) squareNumber;
 
-        for (var i = 3; i <= limit; i++) {
+        for (var i = FIRST_DIVISOR; i <= limit; i++) {
             if (number % i == 0) {
                 return false;
             }

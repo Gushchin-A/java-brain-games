@@ -7,17 +7,21 @@ import hexlet.code.utilities.RandomUtilities;
 /*
 PrimeGame — игра с вычисление простого числа.
 - класс имплементирует Game
+- константы — детали работы генерации вопроса и ответа
 
 Метод generateQuestionAnswer():
 - генерация числа
 - создание вопроса и ответа
 */
 
-public class PrimeGame implements Game {
+public final class PrimeGame implements Game {
+    private static final int MIN_RANDOM = 0;
+    private static final int MAX_RANDOM = 100;
+
     private String currentAnswer;
     private int currentQuestion;
-    private int step;
-    private int primeWas;
+    private int step = 0;
+    private int primeWas = 0;
 
     @Override
     public String gameDescription() {
@@ -32,10 +36,6 @@ public class PrimeGame implements Game {
 
     @Override
     public boolean checkAnswer(String userAnswer) {
-
-        if (!userAnswer.equals("yes") && !userAnswer.equals("no")) {
-            throw new IllegalArgumentException("The answer is incorrect");
-        }
         return currentAnswer.equals(userAnswer);
     }
 
@@ -50,10 +50,10 @@ public class PrimeGame implements Game {
     // если простого числа еще не было, то в третьем круге мы точно
     // покажем простое число
     public void generateQuestionAnswer() {
-        currentQuestion = RandomUtilities.randomNumber(0, 100);
+        currentQuestion = RandomUtilities.randomNumber(MIN_RANDOM, MAX_RANDOM);
 
         while (step == 2 && primeWas == 0) {
-            currentQuestion = RandomUtilities.randomNumber(0, 100);
+            currentQuestion = RandomUtilities.randomNumber(MIN_RANDOM, MAX_RANDOM);
             if (Predicates.isPrime(currentQuestion)) {
                 break;
             }

@@ -7,13 +7,17 @@ import hexlet.code.utilities.RandomUtilities;
 /*
 EvenGame — игра проверка четности числа.
 - класс имплементирует Game
+- константы — детали работы генерации вопроса и ответа
 
 Метод generateQuestionAnswer():
 - генерация рандомного числа
 - создание вопроса и ответа
 */
 
-public class EvenGame implements Game {
+public final class EvenGame implements Game {
+    private static final int MIN_RANDOM = 0;
+    private static final int MAX_RANDOM = 42;
+
     private String currentAnswer;
     private int currentQuestion;
 
@@ -31,10 +35,6 @@ public class EvenGame implements Game {
 
     @Override
     public boolean checkAnswer(String userAnswer) {
-
-        if (!userAnswer.equals("yes") && !userAnswer.equals("no")) {
-            throw new IllegalArgumentException("The answer is incorrect");
-        }
         return currentAnswer.equals(userAnswer);
     }
 
@@ -44,7 +44,7 @@ public class EvenGame implements Game {
     }
 
     public void generateQuestionAnswer() {
-        currentQuestion = RandomUtilities.randomNumber(1, 42);
+        currentQuestion = RandomUtilities.randomNumber(MIN_RANDOM, MAX_RANDOM);
 
         if (Predicates.isEven(currentQuestion)) {
             currentAnswer = "yes";

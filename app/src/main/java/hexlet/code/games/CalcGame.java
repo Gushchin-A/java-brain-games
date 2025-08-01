@@ -6,13 +6,23 @@ import hexlet.code.utilities.RandomUtilities;
 /*
 CalcGame — игра калькулятор.
 - класс имплементирует Game
+- константы — детали работы генерации вопроса и ответа
 
 Метод generateQuestionAnswer():
 - генерация выражений
 - создание вопроса и ответа
 */
 
-public class CalcGame implements Game {
+public final class CalcGame implements Game {
+    private static final int MIN_RANDOM = 1;
+    private static final int MAX_RANDOM_FIRST = 20;
+    private static final int MAX_RANDOM_SECOND = 10;
+    private static final int MIN_OPERATION = 1;
+    private static final int MAX_OPERATION = 3;
+    private static final int ADDITION = 1;
+    private static final int SUBTRACTION = 2;
+    private static final int MULTIPLICATION = 3;
+
     private String currentQuestion;
     private int currentAnswer;
 
@@ -52,25 +62,24 @@ public class CalcGame implements Game {
     }
 
     // генерация двух рандомных чисел и выражений
-    // аргументы в рандом генераторе можно поменять,
+    // аргументы в рандом генераторе задаются в полях класса вручную
     // чтобы уменьшить/увеличить сложность
     public void generateQuestionAnswer() {
-        var numberOne = RandomUtilities.randomNumber(1, 20);
-        var numberTwo = RandomUtilities.randomNumber(1, 10);
+        var numberOne = RandomUtilities.randomNumber(MIN_RANDOM, MAX_RANDOM_FIRST);
+        var numberTwo = RandomUtilities.randomNumber(MIN_RANDOM, MAX_RANDOM_SECOND);
 
-        var randomExpressionDouble = Math.random() * 3;
-        var randomExpressionInt = (int) randomExpressionDouble;
+        var randomExpression = RandomUtilities.randomNumber(MIN_OPERATION, MAX_OPERATION);
 
-        switch (randomExpressionInt) {
-            case 0:
+        switch (randomExpression) {
+            case ADDITION:
                 currentQuestion = numberOne + " + " + numberTwo;
                 currentAnswer = numberOne + numberTwo;
                 break;
-            case 1:
+            case SUBTRACTION:
                 currentQuestion = numberOne + " - " + numberTwo;
                 currentAnswer = numberOne - numberTwo;
                 break;
-            case 2:
+            case MULTIPLICATION:
                 currentQuestion = numberOne + " * " + numberTwo;
                 currentAnswer = numberOne * numberTwo;
                 break;

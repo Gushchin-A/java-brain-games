@@ -7,13 +7,17 @@ import hexlet.code.utilities.RandomUtilities;
 /*
 GcdGame — игра с поиском наибольшого общего делителя двух чисел.
 - класс имплементирует Game
+- константы — детали работы генерации вопроса и ответа
 
 Метод generateQuestionAnswer():
 - генерация двух чисел
 - создание вопроса и ответа
 */
 
-public class GcdGame implements Game {
+public final class GcdGame implements Game {
+    private static final int MIN_RANDOM = 1;
+    private static final int MAX_RANDOM = 100;
+
     private String currentQuestion;
     private int currentAnswer;
 
@@ -53,11 +57,11 @@ public class GcdGame implements Game {
     }
 
     // генерация двух рандомных чисел и выражений
-    // аргументы в рандом генераторе можно поменять,
+    // аргументы в рандом генераторе задаются в полях класса вручную
     // чтобы уменьшить/увеличить сложность
     public void generateQuestionAnswer() {
-        var numberOne = RandomUtilities.randomNumber(1, 100);
-        var numberTwo = RandomUtilities.randomNumber(1, 100);
+        var numberOne = RandomUtilities.randomNumber(MIN_RANDOM, MAX_RANDOM);
+        var numberTwo = RandomUtilities.randomNumber(MIN_RANDOM, MAX_RANDOM);
         currentQuestion = numberOne + " " + numberTwo;
         currentAnswer = Predicates.greatestCommonDivisor(numberOne, numberTwo);
     }
