@@ -30,7 +30,7 @@ public class Engine {
         for (var i = 0; i <= 3; i++) {
 
             if (i == 3) {
-                System.out.println("\n" + "Congratulations, " + Greet.getUserName() + "!" + "\n");
+                System.out.println("Congratulations, " + Greet.getUserName() + "!" + "\n");
                 break;
             }
 

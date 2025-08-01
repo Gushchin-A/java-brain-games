@@ -7,17 +7,14 @@ import hexlet.code.utilities.RandomUtilities;
 /*
 GcdGame — игра с поиском наибольшого общего делителя двух чисел.
 - класс имплементирует Game
-- в данный момент в классе находится метод с генерацией рандомного числа
-- возможно метод с генерацией рандомных чисел переедет в утилиты
 
-В полях класса храним:
-- два текущих рандомных числа для игры
-- текущий правильный ответ
+Метод generateQuestionAnswer():
+- генерация двух чисел
+- создание вопроса и ответа
 */
 
 public class GcdGame implements Game {
-    private int currentNumberOne;
-    private int currentNumberTwo;
+    private String currentQuestion;
     private int currentAnswer;
 
     @Override
@@ -27,16 +24,16 @@ public class GcdGame implements Game {
 
     @Override
     public String getQuestion() {
-        currentNumberOne = RandomUtilities.randomNumber(1, 100);
-        currentNumberTwo = RandomUtilities.randomNumber(1, 100);
-        return currentNumberOne + " " + currentNumberTwo;
+        generateQuestionAnswer();
+        return currentQuestion;
     }
 
+    // дополнительно добавлено исключение, если пользователь
+    // ввел текст или числа с пробелами
     @Override
     public boolean checkAnswer(String userAnswer) {
         try {
             var answer = Integer.parseInt(userAnswer);
-            currentAnswer = Predicates.greatestCommonDivisor(currentNumberOne, currentNumberTwo);
             boolean isCorrect = answer == currentAnswer;
             if (isCorrect) {
                 return true;
@@ -53,5 +50,15 @@ public class GcdGame implements Game {
     @Override
     public String getCorrectAnswer() {
         return currentAnswer + "";
+    }
+
+    // генерация двух рандомных чисел и выражений
+    // аргументы в рандом генераторе можно поменять,
+    // чтобы уменьшить/увеличить сложность
+    public void generateQuestionAnswer() {
+        var numberOne = RandomUtilities.randomNumber(1, 100);
+        var numberTwo = RandomUtilities.randomNumber(1, 100);
+        currentQuestion = numberOne + " " + numberTwo;
+        currentAnswer = Predicates.greatestCommonDivisor(numberOne, numberTwo);
     }
 }

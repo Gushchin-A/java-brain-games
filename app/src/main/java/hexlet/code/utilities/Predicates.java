@@ -4,6 +4,7 @@ package hexlet.code.utilities;
 Predicates — содержит методы проверки
 - проверка четности числа
 - поиск НОД (наибольший общий делитель)
+- простое число или нет
 */
 
 public class Predicates {
@@ -13,7 +14,7 @@ public class Predicates {
         return number % 2 == 0;
     }
 
-    // поиск НОД
+    // поиск наибольшего обшего делителя
     public static int greatestCommonDivisor(int numberOne, int numberTwo) {
         var a = numberOne;
         var b = numberTwo;
@@ -25,27 +26,26 @@ public class Predicates {
         }
         return a;
     }
-}
 
-/*
-старая реализация поиска игры в каталоге. заменена в app на switch
-проверка введенного номера от пользователя
+    // проверка простого числа
+    public static boolean isPrime(int number) {
 
-    public static boolean findGame(int[] games, int number) {
-        for (var g : games) {
-            if (g == number) {
-                return true;
+        if (number < 2 || number % 2 == 0) {
+            return false;
+        }
+
+        if (number == 2) {
+            return true;
+        }
+
+        double squareNumber = Math.sqrt(number);
+        var limit = (int) squareNumber;
+
+        for (var i = 3; i <= limit; i++) {
+            if (number % i == 0) {
+                return false;
             }
         }
-        return false;
+        return true;
     }
-
-метод, где проверим нечетное или нет
-вызывается на 'no' от пользовтеля
-
-    public static boolean isOdd(int number) {
-        return number % 2 != 0;
-    }
-
- */
-
+}

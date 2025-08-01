@@ -3,6 +3,15 @@ package hexlet.code.games;
 import hexlet.code.games.interfaces.Game;
 import hexlet.code.utilities.RandomUtilities;
 
+/*
+ProgressionGame — игра с поиском пропущенного числа в последовательности
+- класс имплементирует Game
+
+Метод generateQuestionAnswer():
+- генерация последовательности
+- создание вопроса и ответа
+*/
+
 public class ProgressionGame implements Game {
     private String currentQuestion;
     private int currentAnswer;
@@ -19,6 +28,8 @@ public class ProgressionGame implements Game {
         return currentQuestion;
     }
 
+    // дополнительно добавлено исключение, если пользователь
+    // ввел текст или числа с пробелами
     @Override
     public boolean checkAnswer(String userAnswer) {
         try {
@@ -36,13 +47,19 @@ public class ProgressionGame implements Game {
         return false;
     }
 
+    /*
+    Cоздаем массив из случайных чисел. Находим случайным образом индекс, который скроем
+    Записываем правильный ответ, меняем число на null
+    Через StringBuilder собираем строку. null меняем на две точки
+    Генерация следующей последовательности также генерируется случайным образом.
+     */
     @Override
     public String getCorrectAnswer() {
         return currentAnswer + "";
     }
 
     public void generateQuestionAnswer() {
-        var progression = new int[10];
+        var progression = new Integer[10];
         var start = RandomUtilities.randomNumber(1, 16);
         var hiddenIndex = RandomUtilities.randomNumber(0, 9);
         for (var i = 0; i < 10; i++) {
@@ -52,11 +69,11 @@ public class ProgressionGame implements Game {
         var coefficientStep = RandomUtilities.randomNumber(1, 3);
         step += coefficientStep;
         currentAnswer = progression[hiddenIndex];
-        progression[hiddenIndex] = 0;
+        progression[hiddenIndex] = null;
 
         StringBuilder progressionResult = new StringBuilder();
         for (var element : progression) {
-            if (element == 0) {
+            if (element == null) {
                 progressionResult.append(" ");
                 progressionResult.append("..");
                 progressionResult.append(" ");
@@ -69,41 +86,3 @@ public class ProgressionGame implements Game {
         currentQuestion = progressionResult.toString();
     }
 }
-
-/*
-currentElement = start + index * step(2)
-
-
-1 + 0 * 2
-1
-
-1 + 1 * 2
-3
-
-1 + 2 * 2
-5
-
-1 + 3 * 2
-7
-
-1  + 4 * 2
-9
-
-1 + 5 * 2
-11
-
-start — какой раз запускаем игру. зависит от правильных ответов пользователя. От 1 до 3
-step — сколько прибавляет последовательность
-Index — круг счетчика
-
-После каждого правильного ответа от пользователя все три счетчика ++
-
-Логика:
-
-- Из Engine в этот метод последовательности игры передаю аргументы в виде start и step.
-Тогда что я буду передавать в остальные игры?
-
-- В самом классе при каждом вызове метода с чеком проверкой ответа,
-при положительном исходе внутри этого метода проверки мы меняем поля класс start и step на плюс 1
-
- */

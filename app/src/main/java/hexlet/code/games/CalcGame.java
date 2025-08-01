@@ -6,11 +6,10 @@ import hexlet.code.utilities.RandomUtilities;
 /*
 CalcGame — игра калькулятор.
 - класс имплементирует Game
-- в данный момент в классе находится метод с рандомными выражениями
-- возможно метод с генерацией рандомных выражений переедет в утилиты
 
-В методе с генерацией рандомных выражений сразу же вычисляется ответ.
-Ответ и выражение записываются в поле класса.
+Метод generateQuestionAnswer():
+- генерация выражений
+- создание вопроса и ответа
 */
 
 public class CalcGame implements Game {
@@ -28,6 +27,8 @@ public class CalcGame implements Game {
         return currentQuestion;
     }
 
+    // дополнительно добавлено исключение, если пользователь
+    // ввел текст или числа с пробелами
     @Override
     public boolean checkAnswer(String userAnswer) {
         try {
@@ -50,9 +51,12 @@ public class CalcGame implements Game {
         return currentAnswer + "";
     }
 
+    // генерация двух рандомных чисел и выражений
+    // аргументы в рандом генераторе можно поменять,
+    // чтобы уменьшить/увеличить сложность
     public void generateQuestionAnswer() {
-        var numberOne = RandomUtilities.randomNumber(1, 30);
-        var numberTwo = RandomUtilities.randomNumber(1, 20);
+        var numberOne = RandomUtilities.randomNumber(1, 20);
+        var numberTwo = RandomUtilities.randomNumber(1, 10);
 
         var randomExpressionDouble = Math.random() * 3;
         var randomExpressionInt = (int) randomExpressionDouble;

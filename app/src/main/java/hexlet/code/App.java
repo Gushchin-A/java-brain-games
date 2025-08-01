@@ -4,31 +4,37 @@ import hexlet.code.engine.Engine;
 import hexlet.code.games.CalcGame;
 import hexlet.code.games.EvenGame;
 import hexlet.code.games.GcdGame;
+import hexlet.code.games.PrimeGame;
 import hexlet.code.games.ProgressionGame;
+import hexlet.code.interaction.Exit;
 import hexlet.code.interaction.Greet;
 import java.util.Scanner;
 
 /*
 App — игровое меню
-- Просим пользователя выбрать игру
-- Запускаем приветствие
-- После запускаем игру
+- просим пользователя выбрать игру
+- запускаем приветствие
+- после запускаем игру
 
-Пакет games содержит:
-- Интерфейс Game. Внутри методы всех игр
-- Список всех игр
-- Одна игра = отдельный class с методами (вопросы, проверка ответов, описание)
-- Каждая игра имплементирует интерфейс Game
+Пакет games:
+- интерфейс Game. Внутри методы всех игр
+- список всех игр
+- одна игра = отдельный class с методами (вопросы, проверка ответов, описание)
+- каждая игра имплементирует интерфейс Game
+- в каждой игре присутствуют однотипные поля: currentQuestion, private int currentAnswer
 
 Пакет engine:
-Cодержит class Engine для старта каждой игры.
+Cодержит кдасс Engine для старта каждой игры.
 В метод start класса Engine передаем объект Game в зависимости от выбора пользователя
 
 Пакет interaction:
-Храним взаимодействие с пользователем. На данный момент содержит class Greet с методом приветствия.
-Приветствие вызываем в Engine. Имя храним в Greet.
+Храним взаимодействие с пользователем
+- Greet приветствие и хранение имени.
+- Exit прощание
 
-Проверка на четность, генераторы чисел и подобное. Скорее всего перенесу в утилиты.
+Пакет utilities:
+- Predicates для хранения методов проверки на четность, НОД и др.
+- RandomUtilities для хранения метода генерации случайных чисел
 */
 
 
@@ -39,31 +45,15 @@ public class App {
         var gameSelection = "\n" + "Please enter the game number and press Enter.";
         var choice = "Your choice: ";
 
-        int[] games = {1, 2, 3, 4, 5, 0};
+        int[] games = {1, 2, 3, 4, 5, 6, 0};
         String[] menuText = {" - Greet", " - Even", " - Calc",
-                             " - GCD", " - Progression", " - Exit"};
+                             " - GCD", " - Progression", " - Prime",
+                             " - Exit"};
 
         System.out.println(gameSelection);
         for (var i = 0; i < games.length; i++) {
             System.out.println(games[i] + menuText[i]);
         }
-        // выводим меню. можно попробовать сделать циклом
-        /*
-        System.out.print(gameSelection
-                + "\n"
-                + games[0] + menuText[0]
-                + "\n"
-                + games[1] + menuText[1]
-                + "\n"
-                + games[2] + menuText[2]
-                + "\n"
-                + games[3] + menuText[3]
-                + "\n"
-                + games[4] + menuText[4]
-                + "\n");
-          */
-
-        // проверяем что ввел пользователь
 
         var userChoiceText = scanner.nextLine();
         try {
@@ -93,6 +83,15 @@ public class App {
                     var progressionGame = new ProgressionGame();
                     Engine.start(progressionGame);
                     break;
+                case 6:
+                    System.out.println(choice + userChoice + "\n");
+                    var primeGame = new PrimeGame();
+                    Engine.start(primeGame);
+                    break;
+                case 0:
+                    System.out.println(choice + userChoice + "\n");
+                    Exit.parting();
+                    break;
                 default:
                     System.out.println("The game with this number does not exist.");
             }
@@ -104,19 +103,3 @@ public class App {
         }
     }
 }
-
-/*
-самый первый подход с созданием переменных под каждый пункт меню
-после первой сборки решил переделать в массивы т.к. даже с двумя
-пунктами меню уже получилось объемно
-if также решил переделать в одну строку под поиск элемента
-можно было сделать через switch, но хотелось сделать еще чище и не потерять удобство
-
-var menuOneText = " - Greet";
-var menuOneNumber = 1;
-var menuOne = menuOneNumber + menuOneText;
-
-var menuZeroText = " - Exit";
-var menuZeroNumber = 0;
-var menuZero = menuZeroNumber + menuZeroText;
- */
