@@ -74,15 +74,13 @@ public class ProgressionGame implements Game {
         StringBuilder progressionResult = new StringBuilder();
         for (var element : progression) {
             if (element == null) {
-                progressionResult.append(" ");
                 progressionResult.append("..");
                 progressionResult.append(" ");
             } else {
-                progressionResult.append(" ");
                 progressionResult.append(element);
                 progressionResult.append(" ");
             }
         }
-        currentQuestion = progressionResult.toString();
+        currentQuestion = progressionResult.toString().trim();
     }
 }
