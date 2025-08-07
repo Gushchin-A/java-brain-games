@@ -1,12 +1,14 @@
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/Gushchin-A/java-project-61/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/Gushchin-A/java-project-61/actions)
 ### Sonarcloud Quality Gate:
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Gushchin-A_java-project-61&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=Gushchin-A_java-project-61)  
-
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=Gushchin-A_java-project-61&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=Gushchin-A_java-project-61)
 <sub>Integration planned — not active yet</sub>
-
 ---
-### 🎮 🧠 Brain Games Demo
+### Project launch:
+make gradle-build	# project assembly
+make run	# launch game
+---
+### 🎮 🧠 Brain Games
 Collection of console mini-games.
 Implemented games: even or odd, calculator, greatest common divisor, arithmetic progression, and prime check.
 [![asciicast](https://asciinema.org/a/CK68mnl5wM4o8dQ3fp266B0G5.svg)](https://asciinema.org/a/CK68mnl5wM4o8dQ3fp266B0G5)

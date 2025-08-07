@@ -1,70 +1,84 @@
 package hexlet.code.games;
 
-import hexlet.code.games.interfaces.Game;
-import hexlet.code.utilities.Predicates;
+import hexlet.code.engine.Engine;
 import hexlet.code.utilities.RandomUtilities;
 
 /*
 PrimeGame — игра с вычисление простого числа.
-- класс имплементирует Game
 - константы — детали работы генерации вопроса и ответа
 
 Метод generateQuestionAnswer():
-- генерация числа
 - создание вопроса и ответа
+
+Метод isPrime():
+- проверка простое число или нет
 */
 
-public final class PrimeGame implements Game {
+public final class PrimeGame {
     private static final int MIN_RANDOM = 0;
     private static final int MAX_RANDOM = 100;
 
-    private String currentAnswer;
-    private int currentQuestion;
-    private int step = 0;
-    private int primeWas = 0;
+    private static String currentAnswer;
+    private static int currentQuestion;
+    private static int step = 0;
+    private static int primeWas = 0;
 
-    @Override
-    public String gameDescription() {
-        return "Answer 'yes' if given number is prime. Otherwise answer 'no'.";
+    public static void play() {
+
+        var description = "Answer 'yes' if given number is prime. Otherwise answer 'no'.";
+        var rounds = new String[3][2];
+
+        for (var i = 0; i < rounds.length; i++) {
+            generateQuestionAnswer();
+            rounds[i][0] = String.valueOf(currentQuestion);
+            rounds[i][1] = currentAnswer;
+        }
+
+        Engine.start(description, rounds);
     }
-
-    @Override
-    public String getQuestion() {
-        generateQuestionAnswer();
-        return currentQuestion + "";
-    }
-
-    @Override
-    public boolean checkAnswer(String userAnswer) {
-        return currentAnswer.equals(userAnswer);
-    }
-
-    @Override
-    public String getCorrectAnswer() {
-        return currentAnswer;
-    }
-
     // чтобы точно выпало хотя бы один раз простое число
     // реализованы переменные step — текущее количество вопросов
     // и переменнная primeWas — простое число уже было или нет
     // если простого числа еще не было, то в третьем круге мы точно
     // покажем простое число
-    public void generateQuestionAnswer() {
+    public static void generateQuestionAnswer() {
         currentQuestion = RandomUtilities.randomNumber(MIN_RANDOM, MAX_RANDOM);
 
         while (step == 2 && primeWas == 0) {
             currentQuestion = RandomUtilities.randomNumber(MIN_RANDOM, MAX_RANDOM);
-            if (Predicates.isPrime(currentQuestion)) {
+            if (isPrime(currentQuestion)) {
                 break;
             }
         }
 
-        if (Predicates.isPrime(currentQuestion)) {
+        if (isPrime(currentQuestion)) {
             currentAnswer = "yes";
             primeWas++;
         } else {
             currentAnswer = "no";
         }
         step++;
+    }
+
+    public static boolean isPrime(int number) {
+        var firstDivisor = 3;
+
+        if (number < 2 || number % 2 == 0) {
+            return false;
+        }
+
+        if (number == 2) {
+            return true;
+        }
+
+        double squareNumber = Math.sqrt(number);
+        var limit = (int) squareNumber;
+
+        for (var i = firstDivisor; i <= limit; i++) {
+            if (number % i == 0) {
+                return false;
+            }
+        }
+        return true;
     }
 }

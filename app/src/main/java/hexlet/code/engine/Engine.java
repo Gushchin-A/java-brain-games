@@ -1,56 +1,50 @@
 package hexlet.code.engine;
 
-import hexlet.code.games.interfaces.Game;
 import hexlet.code.interaction.Greet;
 import java.util.Scanner;
 
 /*
-Engine — запуск и управление играми
-- метод start передаем конкретную игру класса Game
-- каждая игра имлементирует интерфейс Game
-- константа — максимум правильных ответов
-
-Далее вызываем общее приветствие.
-Игра проходит в цикле for. В нем же мы делаем все необходимые проверки:
-- для показа вопроса вызываем методы запущенной игры
-- для проверки также вызываем метод запущенной игры
-- ответ пользователя берем в этом классе в методе start
-- ответ пользователя в виде аргумента передает в метод запущенной игры
+Engine — запуск игр
+- от каждой игры получаем описание и массив вопросы/ответы
+- приветствие
+- начало игры
+- проверка ответа от пользователя
+- вывод сообщений
 */
 
 public class Engine {
-    private static final int MAX_CORRECT_ANSWERS = 3;
 
-    public static void start(Game game) {
+    public static void start(String description, String[][] rounds) {
         Scanner scanner = new Scanner(System.in);
 
-        var questionMenu = "Question: ";
-        var answerMenu = "Your answer: ";
-
         Greet.greeting();
-        System.out.println("\n" + game.gameDescription() + "\n");
+        System.out.println(description);
 
-        for (var i = 0; i <= MAX_CORRECT_ANSWERS; i++) {
+        final var maxCorrectAnswers = 3;
+        var countRound = 0;
 
-            if (i == MAX_CORRECT_ANSWERS) {
-                System.out.println("Congratulations, " + Greet.getUserName() + "!" + "\n");
-                break;
-            }
+        while (countRound < maxCorrectAnswers) {
+            var currentQuestion = rounds[countRound][0];
+            var currentAnswer = rounds[countRound][1];
 
-            var question = game.getQuestion();
-            System.out.println(questionMenu + question);
-            System.out.print(answerMenu);
+            System.out.println("\n" + "Question: " + currentQuestion);
+            System.out.print("Your answer: ");
             var userAnswer = scanner.nextLine();
 
-            if (game.checkAnswer(userAnswer)) {
-                System.out.println("\n" + "Correct!" + "\n");
+            if (userAnswer.equals(currentAnswer)) {
+                System.out.println("\n" + "Correct!");
+                countRound++;
             } else {
                 System.out.println("\n" + "'" + userAnswer + "'"
                         + " is wrong answer ;(. Correct answer was "
-                        + "'" + game.getCorrectAnswer() + "'");
+                        + "'" + currentAnswer + "'");
                 System.out.println("Let's try again, " + Greet.getUserName() + "!" + "\n");
                 break;
+
             }
+        }
+        if (countRound == maxCorrectAnswers) {
+            System.out.println("\n" + "Congratulations, " + Greet.getUserName() + "!" + "\n");
         }
     }
 }

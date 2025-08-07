@@ -19,7 +19,7 @@ public class Greet {
         System.out.println("Welcome to the Brain Games!");
         System.out.print("May I have your name? ");
         userName = scanner.nextLine();
-        System.out.println("\n" + "Hello, " + userName + "!");
+        System.out.println("\n" + "Hello, " + userName + "!" + "\n");
     }
 
     public static String getUserName() {

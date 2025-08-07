@@ -1,40 +1,32 @@
 package hexlet.code;
 
-import hexlet.code.engine.Engine;
-import hexlet.code.games.CalcGame;
-import hexlet.code.games.EvenGame;
-import hexlet.code.games.GcdGame;
-import hexlet.code.games.PrimeGame;
-import hexlet.code.games.ProgressionGame;
-import hexlet.code.interaction.Exit;
 import hexlet.code.interaction.Greet;
+import hexlet.code.games.EvenGame;
+import hexlet.code.games.CalcGame;
+import hexlet.code.games.GcdGame;
+import hexlet.code.games.ProgressionGame;
+import hexlet.code.games.PrimeGame;
+import hexlet.code.interaction.Exit;
 import java.util.Scanner;
 
 /*
 App — игровое меню
-- просим пользователя выбрать игру
-- запускаем приветствие
-- после запускаем игру
+- выбор игры
 
 Пакет games:
-- интерфейс Game. Внутри методы всех игр
-- список всех игр
-- одна игра = отдельный class с методами (вопросы, проверка ответов, описание)
-- каждая игра имплементирует интерфейс Game
-- в каждой игре присутствуют однотипные поля: currentQuestion, private int currentAnswer
+- все игры
+- класс игры — формирует массив вопросов/ответов
+- передает в Engine
 
-Пакет engine:
-Cодержит кдасс Engine для старта каждой игры.
-В метод start класса Engine передаем объект Game в зависимости от выбора пользователя
+Пакет Engine:
+Cодержит кдасс Engine для взаимодействия с пользователем
 
 Пакет interaction:
-Храним взаимодействие с пользователем
-- Greet приветствие и хранение имени.
+- Greet приветствие и хранение имени
 - Exit прощание
 
 Пакет utilities:
-- Predicates для хранения методов проверки на четность, НОД и др.
-- RandomUtilities для хранения метода генерации случайных чисел
+- RandomUtilities метод генерации случайных чисел
 */
 
 
@@ -73,28 +65,23 @@ public class App {
                     break;
                 case EVEN:
                     System.out.println(choice + userChoice + "\n");
-                    var evenGame = new EvenGame();
-                    Engine.start(evenGame);
+                    EvenGame.play();
                     break;
                 case CALC:
                     System.out.println(choice + userChoice + "\n");
-                    var calcGame = new CalcGame();
-                    Engine.start(calcGame);
+                    CalcGame.play();
                     break;
                 case GCD:
                     System.out.println(choice + userChoice + "\n");
-                    var gcdGame = new GcdGame();
-                    Engine.start(gcdGame);
+                    GcdGame.play();
                     break;
                 case PROGRESSION:
                     System.out.println(choice + userChoice + "\n");
-                    var progressionGame = new ProgressionGame();
-                    Engine.start(progressionGame);
+                    ProgressionGame.play();
                     break;
                 case PRIME:
                     System.out.println(choice + userChoice + "\n");
-                    var primeGame = new PrimeGame();
-                    Engine.start(primeGame);
+                    PrimeGame.play();
                     break;
                 case EXIT:
                     System.out.println(choice + userChoice + "\n");

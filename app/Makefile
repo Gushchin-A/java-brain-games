@@ -3,3 +3,6 @@ run-dist: # запуск исполняемого файла
 
 run: # короткий вариант запуска исполняемого файла
 	@./build/install/app/bin/app
+
+gradle-build: # сборка проекта
+	./gradlew build
