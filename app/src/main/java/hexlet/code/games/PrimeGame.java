@@ -18,6 +18,11 @@ public final class PrimeGame {
     private static final int MIN_RANDOM = 0;
     private static final int MAX_RANDOM = 100;
 
+    private static final int FIRST_DIVISOR = 3;
+
+    private static final int ROW = 3;
+    private static final int COLUMNS = 2;
+
     private static String currentAnswer;
     private static int currentQuestion;
     private static int step = 0;
@@ -26,7 +31,7 @@ public final class PrimeGame {
     public static void play() {
 
         var description = "Answer 'yes' if given number is prime. Otherwise answer 'no'.";
-        var rounds = new String[3][2];
+        var rounds = new String[ROW][COLUMNS];
 
         for (var i = 0; i < rounds.length; i++) {
             generateQuestionAnswer();
@@ -61,7 +66,6 @@ public final class PrimeGame {
     }
 
     public static boolean isPrime(int number) {
-        var firstDivisor = 3;
 
         if (number < 2 || number % 2 == 0) {
             return false;
@@ -74,7 +78,7 @@ public final class PrimeGame {
         double squareNumber = Math.sqrt(number);
         var limit = (int) squareNumber;
 
-        for (var i = firstDivisor; i <= limit; i++) {
+        for (var i = FIRST_DIVISOR; i <= limit; i++) {
             if (number % i == 0) {
                 return false;
             }

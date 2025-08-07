@@ -22,6 +22,9 @@ public final class CalcGame {
     private static final int SUBTRACTION = 2;
     private static final int MULTIPLICATION = 3;
 
+    private static final int ROW = 3;
+    private static final int COLUMNS = 2;
+
     private static String currentQuestion;
     private static int currentAnswer;
 
@@ -29,7 +32,7 @@ public final class CalcGame {
     public static void play() {
 
         var description = "What is the result of the expression?";
-        var rounds = new String[3][2];
+        var rounds = new String[ROW][COLUMNS];
 
         for (var i = 0; i < rounds.length; i++) {
             generateQuestionAnswer();

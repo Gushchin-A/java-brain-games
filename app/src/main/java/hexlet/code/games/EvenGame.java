@@ -15,10 +15,13 @@ public final class EvenGame {
     private static final int MIN_RANDOM = 0;
     private static final int MAX_RANDOM = 42;
 
+    private static final int ROW = 3;
+    private static final int COLUMNS = 2;
+
     public static void play() {
 
         var description = "Answer 'yes' if the number is even, otherwise answer 'no'.";
-        var rounds = new String[3][2];
+        var rounds = new String[ROW][COLUMNS];
 
         for (var i = 0; i < rounds.length; i++) {
             var tempNumber = RandomUtilities.randomNumber(MIN_RANDOM, MAX_RANDOM);

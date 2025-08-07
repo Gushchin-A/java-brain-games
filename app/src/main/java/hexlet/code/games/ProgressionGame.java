@@ -24,13 +24,16 @@ public final class ProgressionGame {
     private static final int MIN_INITIAL_STEP = 2;
     private static final int MAX_INITIAL_STEP = 8;
 
+    private static final int ROW = 3;
+    private static final int COLUMNS = 2;
+
     private static String currentQuestion;
     private static int currentAnswer;
 
     public static void play() {
 
         var description = "What number is missing in the progression?";
-        var rounds = new String[3][2];
+        var rounds = new String[ROW][COLUMNS];
 
         for (var i = 0; i < rounds.length; i++) {
             generateQuestionAnswer();
