@@ -4,8 +4,10 @@
 [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=Gushchin-A_java-project-61&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=Gushchin-A_java-project-61)
 ---
 ### Project launch:
-**make gradle-build** *project assembly*  
-**make run** *launch game*
+```bash
+make gradle-build   # project assembly
+make run            # launch game
+```
 ---
 ### 🎮 🧠 Brain Games
 Collection of console mini-games.
