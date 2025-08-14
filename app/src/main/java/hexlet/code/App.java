@@ -1,34 +1,11 @@
 package hexlet.code;
 
-import hexlet.code.interaction.Greet;
 import hexlet.code.games.EvenGame;
 import hexlet.code.games.CalcGame;
 import hexlet.code.games.GcdGame;
 import hexlet.code.games.ProgressionGame;
 import hexlet.code.games.PrimeGame;
-import hexlet.code.interaction.Exit;
 import java.util.Scanner;
-
-/*
-App — игровое меню
-- выбор игры
-
-Пакет games:
-- все игры
-- класс игры — формирует массив вопросов/ответов
-- передает в Engine
-
-Пакет Engine:
-Cодержит кдасс Engine для взаимодействия с пользователем
-
-Пакет interaction:
-- Greet приветствие и хранение имени
-- Exit прощание
-
-Пакет utilities:
-- RandomUtilities метод генерации случайных чисел
-*/
-
 
 public class App {
     private static final int GREET = 1;
@@ -42,17 +19,17 @@ public class App {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        var gameSelection = "\n" + "Please enter the game number and press Enter.";
+        var menuDescription = "\n" + "Please enter the game number and press Enter.";
         var choice = "Your choice: ";
 
-        int[] games = {GREET, EVEN, CALC, GCD, PROGRESSION, PRIME, EXIT};
+        int[] menuItem = {GREET, EVEN, CALC, GCD, PROGRESSION, PRIME, EXIT};
         String[] menuText = {" - Greet", " - Even", " - Calc",
                              " - GCD", " - Progression", " - Prime",
                              " - Exit"};
 
-        System.out.println(gameSelection);
-        for (var i = 0; i < games.length; i++) {
-            System.out.println(games[i] + menuText[i]);
+        System.out.println(menuDescription);
+        for (var i = 0; i < menuItem.length; i++) {
+            System.out.println(menuItem[i] + menuText[i]);
         }
 
         var userChoiceText = scanner.nextLine();
@@ -61,7 +38,7 @@ public class App {
             switch (userChoice) {
                 case GREET:
                     System.out.println(choice + userChoice + "\n");
-                    Greet.greeting();
+                    Engine.greeting();
                     break;
                 case EVEN:
                     System.out.println(choice + userChoice + "\n");
@@ -85,7 +62,7 @@ public class App {
                     break;
                 case EXIT:
                     System.out.println(choice + userChoice + "\n");
-                    Exit.parting();
+                    System.out.println("Bye." + "\n");
                     break;
                 default:
                     System.out.println("The game with this number does not exist.");

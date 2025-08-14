@@ -1,16 +1,7 @@
 package hexlet.code.games;
 
-import hexlet.code.engine.Engine;
+import hexlet.code.Engine;
 import hexlet.code.utilities.RandomUtilities;
-
-/*
-CalcGame — игра калькулятор.
-- константы — детали работы генерации вопроса и ответа
-
-Метод generateQuestionAnswer():
-- генерация выражений
-- создание вопроса и ответа
-*/
 
 public final class CalcGame {
     private static final int MIN_RANDOM = 1;
@@ -25,22 +16,23 @@ public final class CalcGame {
     private static final int ROW = 3;
     private static final int COLUMNS = 2;
 
+    private static final String DESCRIPTION = "What is the result of the expression?";
+
     private static String currentQuestion;
     private static int currentAnswer;
 
 
     public static void play() {
 
-        var description = "What is the result of the expression?";
         var rounds = new String[ROW][COLUMNS];
 
-        for (var i = 0; i < rounds.length; i++) {
+        for (var round : rounds) {
             generateQuestionAnswer();
-            rounds[i][0] = currentQuestion;
-            rounds[i][1] = String.valueOf(currentAnswer);
+            round[0] = currentQuestion;
+            round[1] = String.valueOf(currentAnswer);
         }
 
-        Engine.start(description, rounds);
+        Engine.start(DESCRIPTION, rounds);
     }
 
     // генерация двух рандомных чисел и выражений

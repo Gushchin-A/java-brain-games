@@ -5,8 +5,8 @@
 ---
 ### Project launch:
 ```bash
-make gradle-build   # project assembly
-make run            # launch game
+make build   # project assembly
+make run     # launch game
 ```
 ---
 ### 🎮 🧠 Brain Games

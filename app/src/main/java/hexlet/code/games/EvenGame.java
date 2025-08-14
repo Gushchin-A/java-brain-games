@@ -1,15 +1,7 @@
 package hexlet.code.games;
 
-import hexlet.code.engine.Engine;
+import hexlet.code.Engine;
 import hexlet.code.utilities.RandomUtilities;
-
-/*
-EvenGame — игра проверка четности числа.
-- константы — детали работы генерации вопроса и ответа
-
-Метод isEven():
-- определение четности
-*/
 
 public final class EvenGame {
     private static final int MIN_RANDOM = 0;
@@ -18,20 +10,21 @@ public final class EvenGame {
     private static final int ROW = 3;
     private static final int COLUMNS = 2;
 
+    private static final String DESCRIPTION = "Answer 'yes' if the number is even, otherwise answer 'no'.";
+
     public static void play() {
 
-        var description = "Answer 'yes' if the number is even, otherwise answer 'no'.";
         var rounds = new String[ROW][COLUMNS];
 
-        for (var i = 0; i < rounds.length; i++) {
+        for (var round : rounds) {
             var tempNumber = RandomUtilities.randomNumber(MIN_RANDOM, MAX_RANDOM);
             var currentAnswer = isEven(tempNumber) ? "yes" : "no";
             var currentQuestion = String.valueOf(tempNumber);
-            rounds[i][0] = currentQuestion;
-            rounds[i][1] = currentAnswer;
+            round[0] = currentQuestion;
+            round[1] = currentAnswer;
         }
 
-        Engine.start(description, rounds);
+        Engine.start(DESCRIPTION, rounds);
     }
 
     public static boolean isEven(int number) {

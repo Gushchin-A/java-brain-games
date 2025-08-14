@@ -1,6 +1,6 @@
 package hexlet.code.games;
 
-import hexlet.code.engine.Engine;
+import hexlet.code.Engine;
 import hexlet.code.utilities.RandomUtilities;
 
 /*
@@ -18,24 +18,26 @@ GcdGame — игра с поиском наибольшого общего де�
 public final class GcdGame {
     private static final int MIN_RANDOM = 1;
     private static final int MAX_RANDOM = 100;
+
     private static final int ROW = 3;
     private static final int COLUMNS = 2;
+
+    private static final String DESCRIPTION = "Find the greatest common divisor of given numbers.";
 
     private static String currentQuestion;
     private static int currentAnswer;
 
     public static void play() {
 
-        var description = "Find the greatest common divisor of given numbers.";
         var rounds = new String[ROW][COLUMNS];
 
-        for (var i = 0; i < rounds.length; i++) {
+        for (var round : rounds) {
             generateQuestionAnswer();
-            rounds[i][0] = currentQuestion;
-            rounds[i][1] = String.valueOf(currentAnswer);
+            round[0] = currentQuestion;
+            round[1] = String.valueOf(currentAnswer);
         }
 
-        Engine.start(description, rounds);
+        Engine.start(DESCRIPTION, rounds);
     }
 
     // генерация двух рандомных чисел и выражений

@@ -1,18 +1,7 @@
 package hexlet.code.games;
 
-import hexlet.code.engine.Engine;
+import hexlet.code.Engine;
 import hexlet.code.utilities.RandomUtilities;
-
-/*
-PrimeGame — игра с вычисление простого числа.
-- константы — детали работы генерации вопроса и ответа
-
-Метод generateQuestionAnswer():
-- создание вопроса и ответа
-
-Метод isPrime():
-- проверка простое число или нет
-*/
 
 public final class PrimeGame {
     private static final int MIN_RANDOM = 0;
@@ -23,6 +12,8 @@ public final class PrimeGame {
     private static final int ROW = 3;
     private static final int COLUMNS = 2;
 
+    private static final String DESCRIPTION = "Answer 'yes' if given number is prime. Otherwise answer 'no'.";
+
     private static String currentAnswer;
     private static int currentQuestion;
     private static int step = 0;
@@ -30,16 +21,15 @@ public final class PrimeGame {
 
     public static void play() {
 
-        var description = "Answer 'yes' if given number is prime. Otherwise answer 'no'.";
         var rounds = new String[ROW][COLUMNS];
 
-        for (var i = 0; i < rounds.length; i++) {
+        for (var round : rounds) {
             generateQuestionAnswer();
-            rounds[i][0] = String.valueOf(currentQuestion);
-            rounds[i][1] = currentAnswer;
+            round[0] = String.valueOf(currentQuestion);
+            round[1] = currentAnswer;
         }
 
-        Engine.start(description, rounds);
+        Engine.start(DESCRIPTION, rounds);
     }
     // чтобы точно выпало хотя бы один раз простое число
     // реализованы переменные step — текущее количество вопросов

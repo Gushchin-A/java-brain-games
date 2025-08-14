@@ -1,6 +1,5 @@
-package hexlet.code.engine;
+package hexlet.code;
 
-import hexlet.code.interaction.Greet;
 import java.util.Scanner;
 
 /*
@@ -13,19 +12,19 @@ Engine — запуск игр
 */
 
 public class Engine {
+    private static String userName;
 
     public static void start(String description, String[][] rounds) {
         Scanner scanner = new Scanner(System.in);
 
-        Greet.greeting();
+        greeting();
         System.out.println(description);
 
-        final var maxCorrectAnswers = 3;
         var countRound = 0;
 
-        while (countRound < maxCorrectAnswers) {
-            var currentQuestion = rounds[countRound][0];
-            var currentAnswer = rounds[countRound][1];
+        for (var round : rounds) {
+            var currentQuestion = round[0];
+            var currentAnswer = round[1];
 
             System.out.println("\n" + "Question: " + currentQuestion);
             System.out.print("Your answer: ");
@@ -38,13 +37,22 @@ public class Engine {
                 System.out.println("\n" + "'" + userAnswer + "'"
                         + " is wrong answer ;(. Correct answer was "
                         + "'" + currentAnswer + "'");
-                System.out.println("Let's try again, " + Greet.getUserName() + "!" + "\n");
+                System.out.println("Let's try again, " + userName + "!" + "\n");
                 break;
 
             }
         }
-        if (countRound == maxCorrectAnswers) {
-            System.out.println("\n" + "Congratulations, " + Greet.getUserName() + "!" + "\n");
+        if (countRound == rounds.length) {
+            System.out.println("\n" + "Congratulations, " + userName + "!" + "\n");
         }
+    }
+
+    public static void greeting() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Welcome to the Brain Games!");
+        System.out.print("May I have your name? ");
+        userName = scanner.nextLine();
+        System.out.println("\n" + "Hello, " + userName + "!" + "\n");
     }
 }
