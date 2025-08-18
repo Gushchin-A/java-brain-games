@@ -7,14 +7,14 @@ public final class EvenGame {
     private static final int MIN_RANDOM = 0;
     private static final int MAX_RANDOM = 42;
 
-    private static final int ROW = 3;
+    private static final int ROWS = 3;
     private static final int COLUMNS = 2;
 
     private static final String DESCRIPTION = "Answer 'yes' if the number is even, otherwise answer 'no'.";
 
     public static void play() {
 
-        var rounds = new String[ROW][COLUMNS];
+        var rounds = new String[ROWS][COLUMNS];
 
         for (var round : rounds) {
             var tempNumber = RandomUtilities.randomNumber(MIN_RANDOM, MAX_RANDOM);

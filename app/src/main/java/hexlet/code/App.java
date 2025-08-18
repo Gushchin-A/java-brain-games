@@ -5,6 +5,7 @@ import hexlet.code.games.CalcGame;
 import hexlet.code.games.GcdGame;
 import hexlet.code.games.ProgressionGame;
 import hexlet.code.games.PrimeGame;
+
 import java.util.Scanner;
 
 public class App {
@@ -20,48 +21,47 @@ public class App {
         Scanner scanner = new Scanner(System.in);
 
         var menuDescription = "\n" + "Please enter the game number and press Enter.";
-        var choice = "Your choice: ";
-
-        int[] menuItem = {GREET, EVEN, CALC, GCD, PROGRESSION, PRIME, EXIT};
-        String[] menuText = {" - Greet", " - Even", " - Calc",
-                             " - GCD", " - Progression", " - Prime",
-                             " - Exit"};
 
         System.out.println(menuDescription);
-        for (var i = 0; i < menuItem.length; i++) {
-            System.out.println(menuItem[i] + menuText[i]);
-        }
+        System.out.println("1 - Greet"
+                + "\n" + "2 - Even"
+                + "\n" + "3 - Calc"
+                + "\n" + "4 - GCD"
+                + "\n" + "5 - Progression"
+                + "\n" + "6 - Prime"
+                + "\n" + "0 - Exit");
 
         var userChoiceText = scanner.nextLine();
         try {
             var userChoice = Integer.parseInt(userChoiceText);
+            var menuChoice = "Your choice: " + userChoice + "\n";
             switch (userChoice) {
                 case GREET:
-                    System.out.println(choice + userChoice + "\n");
+                    System.out.println(menuChoice);
                     Engine.greeting();
                     break;
                 case EVEN:
-                    System.out.println(choice + userChoice + "\n");
+                    System.out.println(menuChoice);
                     EvenGame.play();
                     break;
                 case CALC:
-                    System.out.println(choice + userChoice + "\n");
+                    System.out.println(menuChoice);
                     CalcGame.play();
                     break;
                 case GCD:
-                    System.out.println(choice + userChoice + "\n");
+                    System.out.println(menuChoice);
                     GcdGame.play();
                     break;
                 case PROGRESSION:
-                    System.out.println(choice + userChoice + "\n");
+                    System.out.println(menuChoice);
                     ProgressionGame.play();
                     break;
                 case PRIME:
-                    System.out.println(choice + userChoice + "\n");
+                    System.out.println(menuChoice);
                     PrimeGame.play();
                     break;
                 case EXIT:
-                    System.out.println(choice + userChoice + "\n");
+                    System.out.println(menuChoice);
                     System.out.println("Bye." + "\n");
                     break;
                 default:
