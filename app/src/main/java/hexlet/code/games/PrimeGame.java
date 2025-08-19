@@ -12,9 +12,6 @@ public final class PrimeGame {
 
     private static final String DESCRIPTION = "Answer 'yes' if given number is prime. Otherwise answer 'no'.";
 
-    private static int step = 0;
-    private static int primeWas = 0;
-
     public static void play() {
 
         var rounds = new String[ROWS][COLUMNS];
@@ -27,28 +24,16 @@ public final class PrimeGame {
 
         Engine.start(DESCRIPTION, rounds);
     }
-    // чтобы точно выпало хотя бы один раз простое число
-    // реализованы переменные step — текущее количество вопросов
-    // и переменнная primeWas — простое число уже было или нет
-    // если простого числа еще не было, то в третьем круге мы точно простое число
+
     public static String[] generateQuestionAnswer() {
         var currentQuestion = RandomUtilities.randomNumber(MIN_RANDOM, MAX_RANDOM);
         var currentAnswer = "";
 
-        while (step == 2 && primeWas == 0) {
-            currentQuestion = RandomUtilities.randomNumber(MIN_RANDOM, MAX_RANDOM);
-            if (isPrime(currentQuestion)) {
-                break;
-            }
-        }
-
         if (isPrime(currentQuestion)) {
             currentAnswer = "yes";
-            primeWas++;
         } else {
             currentAnswer = "no";
         }
-        step++;
 
         return new String[]{String.valueOf(currentQuestion), currentAnswer};
     }

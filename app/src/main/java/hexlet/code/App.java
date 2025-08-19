@@ -35,33 +35,27 @@ public class App {
         try {
             var userChoice = Integer.parseInt(userChoiceText);
             var menuChoice = "Your choice: " + userChoice + "\n";
+            System.out.println(menuChoice);
             switch (userChoice) {
                 case GREET:
-                    System.out.println(menuChoice);
-                    Engine.greeting();
+                    Cli.greeting();
                     break;
                 case EVEN:
-                    System.out.println(menuChoice);
                     EvenGame.play();
                     break;
                 case CALC:
-                    System.out.println(menuChoice);
                     CalcGame.play();
                     break;
                 case GCD:
-                    System.out.println(menuChoice);
                     GcdGame.play();
                     break;
                 case PROGRESSION:
-                    System.out.println(menuChoice);
                     ProgressionGame.play();
                     break;
                 case PRIME:
-                    System.out.println(menuChoice);
                     PrimeGame.play();
                     break;
                 case EXIT:
-                    System.out.println(menuChoice);
                     System.out.println("Bye." + "\n");
                     break;
                 default:
