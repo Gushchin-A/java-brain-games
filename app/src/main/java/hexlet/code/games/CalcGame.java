@@ -37,33 +37,38 @@ public final class CalcGame {
         var numberTwo = RandomUtilities.randomNumber(MIN_RANDOM, MAX_RANDOM_SECOND);
         var operation = RandomUtilities.randomNumber(MIN_OPERATION, MAX_OPERATION);
 
-        String[] questionAnswer = buildExpression(numberOne, numberTwo, operation);
-        var currentQuestion = questionAnswer[0];
-        var currentAnswer = questionAnswer[1];
-
-        return new String[]{currentQuestion, currentAnswer};
-    }
-
-    public static String[] buildExpression(int numberOne, int numberTwo, int operation) {
         var currentQuestion = "";
-        var currentAnswer = 0;
+        var currentAnswer = calculate(numberOne, numberTwo, operation);
 
         switch (operation) {
             case ADDITION:
                 currentQuestion = numberOne + " + " + numberTwo;
-                currentAnswer = numberOne + numberTwo;
                 break;
             case SUBTRACTION:
                 currentQuestion = numberOne + " - " + numberTwo;
-                currentAnswer = numberOne - numberTwo;
                 break;
             case MULTIPLICATION:
                 currentQuestion = numberOne + " * " + numberTwo;
-                currentAnswer = numberOne * numberTwo;
                 break;
             default:
                 break;
         }
-        return new String[]{currentQuestion, String.valueOf(currentAnswer)};
+
+        return new String[]{currentQuestion, currentAnswer};
+    }
+
+    public static String calculate(int numberOne, int numberTwo, int operation) {
+        var addition = numberOne + numberTwo;
+        var subtraction = numberOne - numberTwo;
+        var multiplication = numberOne * numberTwo;
+
+        if (operation == ADDITION) {
+            return String.valueOf(addition);
+        } else if (operation == SUBTRACTION) {
+            return String.valueOf(subtraction);
+        } else if (operation == MULTIPLICATION) {
+            return String.valueOf(multiplication);
+        }
+        throw new IllegalStateException("Unexpected operation: " + operation);
     }
 }
