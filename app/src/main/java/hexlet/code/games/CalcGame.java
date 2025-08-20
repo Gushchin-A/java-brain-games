@@ -8,12 +8,6 @@ public final class CalcGame {
     private static final int MAX_RANDOM_FIRST = 20;
     private static final int MAX_RANDOM_SECOND = 10;
 
-    private static final int MIN_OPERATION = 1;
-    private static final int MAX_OPERATION = 3;
-    private static final int ADDITION = 1;
-    private static final int SUBTRACTION = 2;
-    private static final int MULTIPLICATION = 3;
-
     private static final int ROWS = 3;
     private static final int COLUMNS = 2;
 
@@ -33,42 +27,29 @@ public final class CalcGame {
     }
 
     public static String[] generateQuestionAnswer() {
+        final char[] operators = {'+', '-', '*'};
         var numberOne = RandomUtilities.randomNumber(MIN_RANDOM, MAX_RANDOM_FIRST);
         var numberTwo = RandomUtilities.randomNumber(MIN_RANDOM, MAX_RANDOM_SECOND);
-        var operation = RandomUtilities.randomNumber(MIN_OPERATION, MAX_OPERATION);
 
-        var currentQuestion = "";
-        var currentAnswer = calculate(numberOne, numberTwo, operation);
+        var indexOperator = RandomUtilities.randomNumber(0, operators.length - 1);
+        var operator = operators[indexOperator];
 
-        switch (operation) {
-            case ADDITION:
-                currentQuestion = numberOne + " + " + numberTwo;
-                break;
-            case SUBTRACTION:
-                currentQuestion = numberOne + " - " + numberTwo;
-                break;
-            case MULTIPLICATION:
-                currentQuestion = numberOne + " * " + numberTwo;
-                break;
-            default:
-                break;
-        }
+        var currentQuestion = numberOne + " " + operator + " " + numberTwo;
+        var currentAnswer = Integer.toString(calculate(numberOne, numberTwo, operator));
 
         return new String[]{currentQuestion, currentAnswer};
     }
 
-    public static String calculate(int numberOne, int numberTwo, int operation) {
-        var addition = numberOne + numberTwo;
-        var subtraction = numberOne - numberTwo;
-        var multiplication = numberOne * numberTwo;
-
-        if (operation == ADDITION) {
-            return String.valueOf(addition);
-        } else if (operation == SUBTRACTION) {
-            return String.valueOf(subtraction);
-        } else if (operation == MULTIPLICATION) {
-            return String.valueOf(multiplication);
+    public static int calculate(int numberOne, int numberTwo, char operator) {
+        switch (operator) {
+            case '+':
+                return numberOne + numberTwo;
+            case '-':
+                return numberOne - numberTwo;
+            case '*':
+                return numberOne * numberTwo;
+            default:
+                throw new IllegalStateException("Unexpected operation: " + operator);
         }
-        throw new IllegalStateException("Unexpected operation: " + operation);
     }
 }
