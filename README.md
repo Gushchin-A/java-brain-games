@@ -1,7 +1,9 @@
-### Hexlet tests and linter status:
-[![Actions Status](https://github.com/Gushchin-A/java-project-61/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/Gushchin-A/java-project-61/actions)
-### Sonarcloud Quality Gate:
-[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=Gushchin-A_java-project-61&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=Gushchin-A_java-project-61)
+### 🎮 🧠 Brain Games
+Educational Java console application based on a Hexlet project.
+
+Collection of console mini-games.
+Implemented games: even or odd, calculator, greatest common divisor, arithmetic progression, and prime check.
+
 ---
 ### Project launch:
 ```bash
@@ -9,10 +11,6 @@ make build   # project assembly
 make run     # launch game
 ```
 ---
-### 🎮 🧠 Brain Games
-Collection of console mini-games.
-Implemented games: even or odd, calculator, greatest common divisor, arithmetic progression, and prime check.
-
 [![asciicast](https://asciinema.org/a/o97VuwyhKuJSomQB7A4qdt926.svg)](https://asciinema.org/a/o97VuwyhKuJSomQB7A4qdt926)
 #### Demo part — even
 Mini-game: even or odd.
